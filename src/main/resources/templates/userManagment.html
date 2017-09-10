@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/main.css}" />
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/jquery-3.2.1.min.js}"></script>
+<script>
+    $(document).ready(function(){
+    	$('.editPasswordField .edit').click(function(){
+    		$(this).hide();
+    		$(this).closest('.input-group').find('input').attr('type', 'text');
+    		$(this).closest('.input-group').find('input').removeAttr('readonly');
+    		$(this).next('.save').show();
+    		return false;
+    	});	
+    });
+    </script>
+</head>
+<body style="background: white">
+	<div class="logo">
+		<h1>Harry's Hofladen</h1>
+	</div>
+	<div class="container"
+		style=" padding-top: 20px; padding-bottom: 30px">
+		<div style="margin-bottom: 15px">
+			<a href="/add-user" class="btn btn-primary btn-sm" role="button">User
+				hinzufügen</a>
+		</div>
+		<div class="row">
+			<th:block th:each="user : ${users}">
+				<div class="container col-lg-4 col-md-6">
+					<div class="usermanagmenttile">
+						<dl class="row">
+							<dt class="col-4">Name</dt>
+							<dd class="col-8" th:text="${user.name}"></dd>
+							<dt class="col-4">Email</dt>
+							<dd class="col-8" th:text="${user.email}"></dd>
+							<dt class="col-12">Passwort</dt>
+							<dd class="col-12">
+								<form class="editPasswordField" action="/update-password" method="post">
+									<input type="hidden" th:value="${user.id}" name="user"></input>
+									<div class="input-group">
+										<input type="password" readonly="readonly" name="password"
+											th:value="${user.password}"></input> <span
+											class="input-group-btn">
+											<button class="btn edit">Bearbeiten</button>
+											<button class="btn save" style="display: none">Speichern</button>
+										</span>
+									</div>
+								</form>
+							</dd>
+						</dl>
+						
+					</div>
+				</div>
+			</th:block>
+		</div>
+		</div>
+</body>
+</html>
