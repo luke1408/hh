@@ -16,6 +16,7 @@
 	
 		<h2>Benutzer Erstellen</h2>
 		<form class="row" action="add-user" method="post">
+			<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
 			<div class="form-group col-6">
 				<label for="name">Name:</label>
 				<input id="name" name="name" type="text" class="form-control" placeholder="Max Mustermann" required="required"></input>

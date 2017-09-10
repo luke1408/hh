@@ -19,7 +19,7 @@ public class UserDao extends AbstractDao<User>{
 	
 	public User findByPassword(String password){
 		String query = "select * from %table where password = ?";
-		resolveTableName(query);
+		query = resolveTableName(query);
 		return jdbcTemplate.queryForObject(query, params(password), rowMapper());
 	}
 	
@@ -37,6 +37,7 @@ public class UserDao extends AbstractDao<User>{
 			user.setId(rs.getInt("id"));
 			user.setPassword(rs.getString("password"));
 			user.setEmail(rs.getString("email"));
+			user.setAdmin(rs.getBoolean("admin"));
 			return user;
 		};
 	}

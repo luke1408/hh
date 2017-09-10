@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import at.fwuick.harryshofladen.SecurityContextService;
 import at.fwuick.harryshofladen.controller.model.AddUser;
 import at.fwuick.harryshofladen.dao.RegularUserDao;
 import at.fwuick.harryshofladen.dao.UserDao;
@@ -32,6 +34,7 @@ public class UserManagmentController {
 	
 	@RequestMapping("/user-managment")
 	public String userManagmentIndex(Model model){
+		SecurityContextService.validateAdmin();
 		List<User> users = regularUserDao.all();
 		model.addAttribute("users", users);
 		return "userManagment";
@@ -41,6 +44,7 @@ public class UserManagmentController {
 	public String updatePassword(
 			@RequestParam(value="user", required=true) Long userId, 
 			@RequestParam(value="password", required=true)String password){
+		SecurityContextService.validateAdmin();
 		User user = regularUserDao.get(userId);
 		user.setPassword(password);
 		userDao.updatePassword(user);
@@ -49,11 +53,13 @@ public class UserManagmentController {
 	
 	@RequestMapping(value="add-user", method=RequestMethod.GET)
 	public String createUser(){
+		SecurityContextService.validateAdmin();
 		return "createUser";
 	}
 	
 	@RequestMapping(value="add-user", method=RequestMethod.POST)
 	public String createUser(@ModelAttribute("user") @Valid AddUser user){
+		SecurityContextService.validateAdmin();
 		regularUserDao.insert(user);
 		return "redirect:/user-managment";
 	}

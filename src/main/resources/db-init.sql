@@ -64,5 +64,5 @@ select * from user where admin = false;
 insert into user (name, password, email, admin) values ('User1', 'asdf1234', 'asdf@gmx.at', false);
 insert into user (name, password, email, admin) values ('User2', 'asdf1224', 'asdf3@gmx.at', false);
 insert into user (name, password, email, admin) values ('User3', 'assf1224', 'asdf5@gmx.at', false);
-insert into user (name, password, email, admin) values ('admin', 'Fdsa1234', 'asd2f@gmx.at', true);
+insert into user (name, password, email, admin) values ('admin', 'admin', 'asd2f@gmx.at', true);
 

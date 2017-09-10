@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/main.css}" />
+<script th:src="@{js/bootstrap.min.js}"></script>
+</head>
+<body style="background: black">
+	<div class="container justify-content-center"
+		style=" padding-top: 200px; padding-bottom: 20px">
+		<div class="alert alert-danger" th:if="${error}">
+		  <strong>Nein!</strong>
+		</div>
+		<form action="login" method="post">
+			<input type="hidden" value="user" name="username"></input>
+			<div class="form-group">
+				<input type="password" class="form-control" name="password" placeholder="Passwort eingeben..."></input> 
+			</div>
+			<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
+			<button type="submit" class="btn">Eintreten</button>
+		</form>
+	</div>
+</body>
+</html>
