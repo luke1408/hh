@@ -3,6 +3,7 @@ package at.fwuick.harryshofladen.dao;
 import java.sql.ResultSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,11 @@ public class UserDao extends AbstractDao<User>{
 	public User findByPassword(String password){
 		String query = "select * from %table where password = ?";
 		query = resolveTableName(query);
-		return jdbcTemplate.queryForObject(query, params(password), rowMapper());
+		try{
+			return jdbcTemplate.queryForObject(query, params(password), rowMapper());
+		}catch(EmptyResultDataAccessException e){
+			return null;
+		}
 	}
 	
 	public boolean passwordExists(String password){
