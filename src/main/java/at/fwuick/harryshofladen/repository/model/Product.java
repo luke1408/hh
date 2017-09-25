@@ -1,5 +1,7 @@
 package at.fwuick.harryshofladen.repository.model;
 
+import java.math.BigDecimal;
+
 import lombok.Data;
 
 @Data
@@ -10,4 +12,5 @@ public class Product {
 	Unit unitObj;
 	String description;
 	int id;
+	BigDecimal price;
 }

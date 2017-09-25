@@ -12,7 +12,7 @@ public class IndexController {
 	@RequestMapping("/")
 	public String index(){
 		if(SecurityContextService.isAdmin()){
-			return "redirect:/user-managment";
+			return "adminIndex";
 		}
 		return "index";
 	}

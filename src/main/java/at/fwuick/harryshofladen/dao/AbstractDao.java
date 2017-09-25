@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
+import at.fwuick.harryshofladen.dao.interfaces.IAllDao;
+import at.fwuick.harryshofladen.dao.interfaces.IDao;
+import at.fwuick.harryshofladen.dao.interfaces.IGetDao;
 import lombok.Setter;
 
 public abstract class AbstractDao<T> implements IDao, IAllDao<T>, IGetDao<T>{

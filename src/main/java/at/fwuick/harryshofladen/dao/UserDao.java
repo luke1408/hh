@@ -7,6 +7,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import at.fwuick.harryshofladen.repository.model.User;
 
@@ -47,6 +48,7 @@ public class UserDao extends AbstractDao<User>{
 		};
 	}
 	
+	@Transactional
 	public User insert(User user){
 		String query = "insert into %table (name, email, password, admin) values (?,?,?,?)";
 		query = resolveTableName(query);

@@ -1,4 +1,4 @@
-package at.fwuick.harryshofladen.dao;
+package at.fwuick.harryshofladen.dao.interfaces;
 
 import java.util.List;
 

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/main.css}" />
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/jquery-3.2.1.min.js}"></script>
+</head>
+<body style="background: white">
+	<div class="logo">
+		<h1>Harry's Hofladen</h1>
+		<form action="logout" method="post">
+			<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
+			<button type="submit" class="btn btn-primary">Logout</button>
+		</form>
+	</div>
+	<div class="container"
+		style=" padding-top: 20px; padding-bottom: 30px">
+		<div style="margin-bottom: 15px">
+			<a href="/add-product" class="btn btn-primary btn-sm" role="button">Product
+				hinzufügen</a>
+		</div>
+		<div class="row">
+			<th:block th:each="product : ${products}">
+				<div class="container col-lg-4 col-md-6">
+					<div class="usermanagmenttile">
+						<dl class="row">
+							<dt class="col-4">Name</dt>
+							<dd class="col-8" th:text="${product.name}"></dd>
+							<dt class="col-4">Description</dt>
+							<dd class="col-8" th:text="${product.description}"></dd>
+							<dt class="col-4">Amount</dt>
+							<dd class="col-8" th:text="${product.amount}"></dd>
+						</dl>
+						
+					</div>
+				</div>
+			</th:block>
+		</div>
+		</div>
+</body>
+</html>

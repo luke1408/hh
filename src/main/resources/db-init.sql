@@ -49,8 +49,8 @@ select product, sum(amount) as amount from o_order
 group by product;
 
 create view product_active_amount as
-select p.id, p.name, p.description, p.price,  (p.amount - poa.amount) as amount, unit from product p
-join product_ordered_amount poa on p.id = poa.product;
+select p.id, p.name, p.description, p.price,  ifnull((p.amount - poa.amount), p.amount) as amount, unit from product p
+left join product_ordered_amount poa on p.id = poa.product;
 
 create view orderable_product as 
 select * from product_active_amount where amount > 0;
@@ -65,4 +65,6 @@ insert into user (name, password, email, admin) values ('User1', 'asdf1234', 'as
 insert into user (name, password, email, admin) values ('User2', 'asdf1224', 'asdf3@gmx.at', false);
 insert into user (name, password, email, admin) values ('User3', 'assf1224', 'asdf5@gmx.at', false);
 insert into user (name, password, email, admin) values ('admin', 'admin', 'asd2f@gmx.at', true);
+insert into unit (name) values ('kg');
+insert into product (name, description, price, amount, unit) values ('Wurst', 'Eine richtige Wurscht hier amal', 22.5, 30, 1);
 

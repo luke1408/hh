@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import at.fwuick.harryshofladen.repository.model.Product;
 
@@ -24,6 +25,15 @@ public class ProductDao extends AbstractDao<Product>{
 	
 	public Product persist(Product product){
 		product.setUnitObj(unitDao.get(product.getUnit()));
+		return product;
+	}
+	
+	@Transactional
+	public Product insert(Product product){
+		String sql = "insert into product (	name, price, description, amount, unit) values( ?, ? , ?, ? , ?)";
+		jdbcTemplate.update(sql, this.params(product.getName(), product.getPrice(), product.getDescription(), product.getAmount(), product.getUnit()));
+		//TODO: PULL THIS IN ABSTRACTDAO
+		product.setId(jdbcTemplate.queryForObject("select max(id) from "+tableName(), Integer.class));
 		return product;
 	}
 

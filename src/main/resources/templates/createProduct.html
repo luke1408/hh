@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{css/main.css}" />
+<script th:src="@{js/bootstrap.min.js}"></script>
+</head>
+<body style="background: white">
+	<div class="logo">
+		<h1>Harry's Hofladen</h1>
+	</div>
+	<div class="container"
+		style=" padding-top: 20px; padding-bottom: 30px">
+	
+		<h2>Produkt erstellen</h2>
+		<form class="row" action="add-product" method="post" enctype="multipart/form-data">
+			<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
+			<div class="form-group col-6">
+				<label for="name">Name:</label>
+				<input id="name" name="name" type="text" class="form-control" placeholder="Wurst" required="required"></input>
+			</div>
+			<div class="form-group col-6">
+				<label for="name">Amount:</label>
+				<input id="name" name="amount" type="number" class="form-control" placeholder="12" required="required"></input>
+			</div>
+			<div class="form-group col-6">
+				<label for="unit">Einheit:</label>
+				<select name="unit" id="unit" class="form-control">
+					<th:block th:each="unit : ${units}">
+						<option th:value="${unit.id}" th:text="${unit.name}"></option>
+					</th:block>
+				</select>
+			</div>
+			<div class="form-group col-6">
+				<label for="description">Beschreibung:</label>
+				<textarea id="description" name="description" placeholder="Beschreibung..." required="required" class="form-control" rows="2"></textarea>
+			</div>
+			<div class="form-group col-6">
+				<label for="price">Preis:</label>
+				<input id="price" name="price" type="number" class="form-control" placeholder="1,00" required="required"></input>
+			</div>
+			<div class="form-group col-6">
+				<label for="img">Bild:</label>
+				<input type="file" name="img" id="img"></input>
+			</div>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary">Hinzufügen</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
