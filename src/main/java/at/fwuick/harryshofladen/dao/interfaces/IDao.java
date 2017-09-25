@@ -8,6 +8,10 @@ public interface IDao {
 		return query.replace("%table", tableName());
 	}
 	
+	public default String query(String query){
+		return resolveTableName(query);
+	}
+	
 	public default Object[] params(Object... objects){
 		return objects;
 	}

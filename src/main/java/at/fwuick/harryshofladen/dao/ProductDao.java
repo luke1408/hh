@@ -13,27 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 import at.fwuick.harryshofladen.repository.model.Product;
 
 @Repository
-public class ProductDao extends AbstractDao<Product>{
+public class ProductDao extends AbstractPopulatedDao<Product>{
+	
 	
 	UnitDao unitDao;
 	
 	@Autowired
 	public ProductDao(JdbcTemplate jdbcTemplate, UnitDao unitDao){
-		super("product", jdbcTemplate);
+		super("product", jdbcTemplate, insertParameter);
 		this.unitDao = unitDao;
 	}
 	
 	public Product persist(Product product){
 		product.setUnitObj(unitDao.get(product.getUnit()));
-		return product;
-	}
-	
-	@Transactional
-	public Product insert(Product product){
-		String sql = "insert into product (	name, price, description, amount, unit) values( ?, ? , ?, ? , ?)";
-		jdbcTemplate.update(sql, this.params(product.getName(), product.getPrice(), product.getDescription(), product.getAmount(), product.getUnit()));
-		//TODO: PULL THIS IN ABSTRACTDAO
-		product.setId(jdbcTemplate.queryForObject("select max(id) from "+tableName(), Integer.class));
 		return product;
 	}
 
@@ -49,6 +41,13 @@ public class ProductDao extends AbstractDao<Product>{
 			product.setPrice(rs.getBigDecimal("price"));
 			return product;
 		};
+	}
+	
+	
+	static final String[] insertParameter = new String[]{"name", "price", "description", "amount", "unit"};
+	@Override
+	protected Object[] mapForInsert(Product e) {
+		return params(e.getName(), e.getPrice(), e.getDescription(), e.getAmount(), e.getUnit());
 	}
 
 }

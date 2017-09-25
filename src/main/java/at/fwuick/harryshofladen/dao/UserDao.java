@@ -12,11 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import at.fwuick.harryshofladen.repository.model.User;
 
 @Repository
-public class UserDao extends AbstractDao<User>{
+public class UserDao extends AbstractPopulatedDao<User>{
 
+	
 	@Autowired
 	protected UserDao(JdbcTemplate jdbcTemplate) {
-		super("user", jdbcTemplate);
+		super("user", jdbcTemplate, insertParameter);
 	}
 	
 	public User findByPassword(String password){
@@ -48,20 +49,17 @@ public class UserDao extends AbstractDao<User>{
 		};
 	}
 	
-	@Transactional
-	public User insert(User user){
-		String query = "insert into %table (name, email, password, admin) values (?,?,?,?)";
-		query = resolveTableName(query);
-		jdbcTemplate.update(query, params(user.getName(), user.getEmail(), user.getPassword(), user.getAdmin()));
-		user.setId(lastId());
-		return user;
-	}
-	
 	public User updatePassword(User user){
 		String query = "update %table set password = ? where id = ?";
 		query = resolveTableName(query);
 		jdbcTemplate.update(query, params(user.getPassword(), user.getId()));
 		return user;
+	}
+
+	static String[] insertParameter = "name, email, password, admin".split(",");
+	@Override
+	protected Object[] mapForInsert(User e) {
+		return params(e.getName(), e.getEmail(), e.getPassword(), e.getAdmin());
 	}
 	
 

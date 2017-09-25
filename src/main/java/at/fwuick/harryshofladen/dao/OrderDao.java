@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import at.fwuick.harryshofladen.model.Order;
 
 @Repository
-public class OrderDao extends AbstractDao<Order>{
+public class OrderDao extends AbstractPopulatedDao<Order>{
 
 	@Autowired
 	protected OrderDao(JdbcTemplate jdbcTemplate) {
-		super("order", jdbcTemplate);
+		super("order", jdbcTemplate, insertParameter);
 	}
 
 	@Override
@@ -27,6 +27,12 @@ public class OrderDao extends AbstractDao<Order>{
 			order.setAmount(rs.getInt("amount"));
 			return order;
 		};
+	}
+	
+	static String[] insertParameter = "product,user,amount".split(",");
+	@Override
+	protected Object[] mapForInsert(Order e) {
+		return params(e.getProduct(), e.getUser(), e.getAmount());
 	}
 
 }
