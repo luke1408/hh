@@ -23,8 +23,8 @@
                             <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"> </span>
                             <span>€</span>
                         </h6>
-                        <span th:text="${product.quantity}"></span>
-                        <span> Stück übrig</span>
+                        <span th:text="${product.amount}"></span>
+                        <span th:text="${product.unitObj.name}"></span><span> übrig</span>
                     </div>
                 </div>
             </div>

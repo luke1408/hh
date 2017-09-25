@@ -46,6 +46,7 @@ public class ProductDao extends AbstractDao<Product>{
 			product.setDescription(rs.getString("description"));
 			product.setName(rs.getString("name"));
 			product.setUnit(rs.getInt("unit"));
+			product.setPrice(rs.getBigDecimal("price"));
 			return product;
 		};
 	}

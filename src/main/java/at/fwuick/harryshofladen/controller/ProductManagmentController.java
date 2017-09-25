@@ -52,6 +52,7 @@ public class ProductManagmentController {
 	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute Product product, @RequestParam("img") MultipartFile imageFile){
 		productDao.insert(product);
+		productDao.persist(product);
 		try {
 			productImageService.store(product.getId(), imageFile);
 		} catch (ProductImageException e) {

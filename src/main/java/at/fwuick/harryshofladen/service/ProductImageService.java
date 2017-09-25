@@ -14,8 +14,9 @@ import at.fwuick.harryshofladen.service.interfaces.IProductImageService;
 
 @Service
 public class ProductImageService implements IProductImageService{
-
-	private static final String rootLocationString = "productImages";
+	
+	private static final String RESOURCE_FOLDER = "src/main/resources";
+	private static final String rootLocationString = RESOURCE_FOLDER+"/static/img";
 	private static final String IMAGE_EXTENSION = ".jpg";
 	private static final String[] ALLOWED_EXTENSIONS = new String[]{".jpg", ".png"};
 	private final Path rootLocation;

@@ -23,6 +23,7 @@ public class ShopController {
 	@RequestMapping("/shop")
 	public String shop(Model model){
 		Collection<Product> products = orderableProductDao.all();
+		products.forEach(orderableProductDao::persist);
 		model.addAttribute("products", products);
 		return "shop";
 	}
