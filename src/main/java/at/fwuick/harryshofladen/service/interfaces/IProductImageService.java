@@ -6,5 +6,6 @@ import at.fwuick.harryshofladen.service.ProductImageException;
 
 public interface IProductImageService {
 	public void store(long productId, MultipartFile productImage) throws ProductImageException;
-	public Object getImageFile(long productId);
+	public String getImageFile(long productId);
+	
 }
