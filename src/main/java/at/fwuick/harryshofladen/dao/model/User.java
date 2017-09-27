@@ -1,4 +1,4 @@
-package at.fwuick.harryshofladen.model;
+package at.fwuick.harryshofladen.dao.model;
 
 import lombok.Data;
 

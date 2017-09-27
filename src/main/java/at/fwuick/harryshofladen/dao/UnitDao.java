@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import at.fwuick.harryshofladen.model.Unit;
+import at.fwuick.harryshofladen.dao.model.Unit;
 
 @Repository
 public class UnitDao extends AbstractDao<Unit>{

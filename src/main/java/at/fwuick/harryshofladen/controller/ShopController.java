@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import at.fwuick.harryshofladen.dao.OrderableProductDao;
-import at.fwuick.harryshofladen.model.Product;
+import at.fwuick.harryshofladen.dao.model.Product;
 
 @Controller
 public class ShopController {

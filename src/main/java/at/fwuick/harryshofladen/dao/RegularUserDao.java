@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import at.fwuick.harryshofladen.model.User;
+import at.fwuick.harryshofladen.dao.model.User;
 
 @Repository
 public class RegularUserDao extends AbstractDao<User>{

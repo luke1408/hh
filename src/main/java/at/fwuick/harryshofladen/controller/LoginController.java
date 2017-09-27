@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fwuick.harryshofladen.dao.UserDao;
-import at.fwuick.harryshofladen.model.User;
+import at.fwuick.harryshofladen.dao.model.User;
 
 @Controller
 public class LoginController {

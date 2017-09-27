@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import at.fwuick.harryshofladen.model.Order;
+import at.fwuick.harryshofladen.dao.model.Order;
 
 @Repository
 public class OrderDao extends AbstractPopulatedDao<Order>{
