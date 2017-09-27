@@ -1,6 +1,5 @@
 package at.fwuick.harryshofladen.model;
 
-import at.fwuick.harryshofladen.repository.model.AbstractIdentifiedEntity;
 import lombok.Data;
 
 @Data

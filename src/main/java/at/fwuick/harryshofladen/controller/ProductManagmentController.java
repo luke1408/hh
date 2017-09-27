@@ -20,7 +20,7 @@ import at.fwuick.harryshofladen.SecurityContextService;
 import at.fwuick.harryshofladen.dao.OrderableProductDao;
 import at.fwuick.harryshofladen.dao.ProductDao;
 import at.fwuick.harryshofladen.dao.UnitDao;
-import at.fwuick.harryshofladen.repository.model.Product;
+import at.fwuick.harryshofladen.model.Product;
 import at.fwuick.harryshofladen.service.ProductImageException;
 import at.fwuick.harryshofladen.service.interfaces.IProductImageService;
 

@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import at.fwuick.harryshofladen.repository.model.User;
+import at.fwuick.harryshofladen.model.User;
 
 @Repository
 public class UserDao extends AbstractPopulatedDao<User>{

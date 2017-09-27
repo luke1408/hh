@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import at.fwuick.harryshofladen.dao.UserDao;
-import at.fwuick.harryshofladen.repository.model.User;
+import at.fwuick.harryshofladen.model.User;
 
 @Component
 public class MyAuthentificationProvider implements AuthenticationProvider{

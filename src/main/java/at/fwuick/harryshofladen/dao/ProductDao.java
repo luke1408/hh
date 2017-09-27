@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import at.fwuick.harryshofladen.repository.model.Product;
+import at.fwuick.harryshofladen.model.Product;
 
 @Repository
 public class ProductDao extends AbstractPopulatedDao<Product>{

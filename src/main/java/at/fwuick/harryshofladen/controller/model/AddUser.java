@@ -2,7 +2,7 @@ package at.fwuick.harryshofladen.controller.model;
 
 import javax.validation.constraints.NotNull;
 
-import at.fwuick.harryshofladen.repository.model.User;
+import at.fwuick.harryshofladen.model.User;
 
 public class AddUser extends User{
 

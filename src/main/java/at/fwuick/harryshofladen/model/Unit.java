@@ -1,4 +1,4 @@
-package at.fwuick.harryshofladen.repository.model;
+package at.fwuick.harryshofladen.model;
 
 import lombok.Data;
 

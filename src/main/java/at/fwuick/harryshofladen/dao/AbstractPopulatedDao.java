@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 
 import at.fwuick.harryshofladen.dao.interfaces.IInsertDao;
-import at.fwuick.harryshofladen.repository.model.AbstractIdentifiedEntity;
+import at.fwuick.harryshofladen.model.AbstractIdentifiedEntity;
 
 public abstract class AbstractPopulatedDao<T extends AbstractIdentifiedEntity> extends AbstractDao<T> implements IInsertDao<T>{
 

@@ -18,7 +18,7 @@ import at.fwuick.harryshofladen.SecurityContextService;
 import at.fwuick.harryshofladen.controller.model.AddUser;
 import at.fwuick.harryshofladen.dao.RegularUserDao;
 import at.fwuick.harryshofladen.dao.UserDao;
-import at.fwuick.harryshofladen.repository.model.User;
+import at.fwuick.harryshofladen.model.User;
 
 @Controller
 public class UserManagmentController {
