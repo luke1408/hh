@@ -14,7 +14,7 @@ public class OrderDao extends AbstractPopulatedDao<Order>{
 
 	@Autowired
 	protected OrderDao(JdbcTemplate jdbcTemplate) {
-		super("order", jdbcTemplate, insertParameter);
+		super("o_order", jdbcTemplate, insertParameter);
 	}
 
 	@Override

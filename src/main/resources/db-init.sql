@@ -30,7 +30,7 @@ create table o_order(
 	amount integer not null,
 	product integer not null,
 	user integer not null,
-	active boolean not null
+	active boolean not null default true
 );
 
 alter table o_order

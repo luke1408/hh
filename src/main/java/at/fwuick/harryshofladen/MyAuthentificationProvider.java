@@ -35,7 +35,7 @@ public class MyAuthentificationProvider implements AuthenticationProvider{
 				authorities.add(ADMIN_AUTHORITY);
 			}
 			return new UsernamePasswordAuthenticationToken(
-		              user.getName(), password, authorities);
+		              user, password, authorities);
 		}
 		return null;
 		

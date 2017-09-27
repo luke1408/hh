@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Order extends AbstractIdentifiedEntity{
-	private int user;
-	private int product;
+	private long user;
+	private long product;
 	private int amount;
 }

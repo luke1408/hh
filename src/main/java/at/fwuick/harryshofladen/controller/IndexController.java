@@ -14,7 +14,7 @@ public class IndexController {
 		if(SecurityContextService.isAdmin()){
 			return "adminIndex";
 		}
-		return "index";
+		return "redirect:/shop";
 	}
 	
 }

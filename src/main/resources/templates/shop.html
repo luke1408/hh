@@ -25,6 +25,12 @@
                         </h6>
                         <span th:text="${product.amount}"></span>
                         <span th:text="${product.unit}"></span><span> übrig</span>
+                        <form action="/shop/order" method="post">
+                        	<input type="number" name="amount"></input>
+                        	<input type="hidden" name="product" th:value="${product.id}"></input>
+                        	<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
+                        	<input type="submit" value="Order"></input>
+                        </form>
                     </div>
                 </div>
             </div>
