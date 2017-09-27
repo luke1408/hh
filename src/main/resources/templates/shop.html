@@ -16,7 +16,7 @@
         <th:block th:each="product : ${products}">
             <div class="col-sm-12 col-md-3">
                 <div class="shoptile">
-                    <img th:src="|/img/product/product${product.id}.jpg|" style="width: 100%"/>
+                    <img th:src="${product.image}" style="width: 100%"/>
                     <div style="margin: 5px">
                         <h3 th:text="${product.name}"/>
                         <h6>
@@ -24,7 +24,7 @@
                             <span>€</span>
                         </h6>
                         <span th:text="${product.amount}"></span>
-                        <span th:text="${product.unitObj.name}"></span><span> übrig</span>
+                        <span th:text="${product.unit}"></span><span> übrig</span>
                     </div>
                 </div>
             </div>
