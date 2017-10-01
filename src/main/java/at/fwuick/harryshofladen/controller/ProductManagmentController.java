@@ -51,6 +51,7 @@ public class ProductManagmentController {
 	
 	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute Product product, @RequestParam("img") MultipartFile imageFile){
+		SecurityContextService.validateAdmin();
 		productDao.insert(product);
 		productDao.persist(product);
 		try {
@@ -63,6 +64,7 @@ public class ProductManagmentController {
 	
 	@RequestMapping(value = "/add-product", method = RequestMethod.GET)
 	public String addProduct(Model model){
+		SecurityContextService.validateAdmin();
 		model.addAttribute("units", unitDao.all());
 		return "createProduct";
 	}
