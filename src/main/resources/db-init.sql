@@ -66,5 +66,6 @@ insert into user (name, password, email, admin) values ('User2', 'asdf1224', 'as
 insert into user (name, password, email, admin) values ('User3', 'assf1224', 'asdf5@gmx.at', false);
 insert into user (name, password, email, admin) values ('admin', 'admin', 'asd2f@gmx.at', true);
 insert into unit (name) values ('kg');
+insert into unit (name) values ('Stück');
 insert into product (name, description, price, amount, unit) values ('Wurst', 'Eine richtige Wurscht hier amal', 22.5, 30, 1);
 

@@ -61,6 +61,11 @@ public class UserDao extends AbstractPopulatedDao<User>{
 	protected Object[] mapForInsert(User e) {
 		return params(e.getName(), e.getEmail(), e.getPassword(), e.getAdmin());
 	}
+
+	public String getName(Long userid) {
+		String query = resolveTableName("select name from %table where id = ?");
+		return jdbcTemplate.queryForObject(query, params(userid), String.class);
+	}
 	
 
 }

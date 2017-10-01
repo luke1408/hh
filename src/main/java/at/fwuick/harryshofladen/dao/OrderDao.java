@@ -34,5 +34,11 @@ public class OrderDao extends AbstractPopulatedDao<Order>{
 	protected Object[] mapForInsert(Order e) {
 		return params(e.getProduct(), e.getUser(), e.getAmount());
 	}
+	
+	public void setActive(long id, boolean active){
+		String sql = resolveTableName("update %table set active = ? where id = ?");
+		jdbcTemplate.update(sql, params(active, id));
+	}
+	
 
 }

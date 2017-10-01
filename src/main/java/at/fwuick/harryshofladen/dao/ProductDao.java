@@ -24,6 +24,8 @@ public class ProductDao extends AbstractPopulatedDao<Product>{
 		this.unitDao = unitDao;
 	}
 	
+	
+	
 	public Product persist(Product product){
 		product.setUnitObj(unitDao.get(product.getUnit()));
 		return product;
