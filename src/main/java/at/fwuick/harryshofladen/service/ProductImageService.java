@@ -23,7 +23,9 @@ public class ProductImageService implements IProductImageService{
 
 	@Override
 	public String getImageFile(long productId) {
-		return "/img/product/product1.jpg";
+		int amountImages = 3;
+		int index = new Long(productId%amountImages).intValue() + 1;
+		return String.format("/img/product/test%d.png", index);
 	}
 
 
