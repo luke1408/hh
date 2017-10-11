@@ -22,18 +22,28 @@
                 <div class="shoptile">
                     <img th:src="${product.image}" style="width: 100%"/>
                     <div style="margin: 5px">
-                        <h3 th:text="${product.name}"/>
-                        <h6>
-                            <span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"> </span>
-                            <span>€</span>
-                        </h6>
-                        <span th:text="${product.amount}"></span>
-                        <span th:text="${product.unit}"></span><span> übrig</span>
+                        <h4 style="height: 3rem" th:text="${product.name}"/>
+                        <div style="font-size: 0.8rem" th:text="${product.description}"></div>
+                        <div>
+                        	<span style="font-size: 1.5rem;font-weight: 600;">
+                            	<span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"> </span>
+                            	<span>€</span>
+                        	</span>
+                        	<span style="font-size: 0.8rem;">
+                        		<span th:text="${product.amount}"></span>
+                        		<span th:text="${product.unit}"></span>
+                        		<span> übrig</span>
+                        	</span>
+                        </div>
                         <form action="/shop/order" method="post">
-                        	<input type="number" name="amount"></input>
                         	<input type="hidden" name="product" th:value="${product.id}"></input>
-                        	<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
-                        	<input type="submit" value="Order"></input>
+                        	<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"></input>
+						    <div class="input-group">
+						      <input name="amount" class="form-control" value="0" type="number"/>
+						      <span class="input-group-btn">
+						        <button class="btn btn-secondary" type="submit">Order</button>
+						      </span>
+							</div>
                         </form>
                     </div>
                 </div>
