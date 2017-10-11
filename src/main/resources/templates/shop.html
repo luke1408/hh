@@ -23,7 +23,7 @@
                     <img th:src="${product.image}" style="width: 100%"/>
                     <div style="margin: 5px">
                         <h4 style="height: 3rem" th:text="${product.name}"/>
-                        <div style="font-size: 0.8rem" th:text="${product.description}"></div>
+                        <div style="font-size: 0.8rem; height: 1.6rem" th:text="${product.description}"></div>
                         <div>
                         	<span style="font-size: 1.5rem;font-weight: 600;">
                             	<span th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"> </span>
