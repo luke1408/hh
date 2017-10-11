@@ -26,6 +26,7 @@ public class ShopController {
 	OrderableProductDao orderableProductDao;
 	ShopProductConverter shopProductConverter;
 	IOrderService orderService;
+
 	
 	@Autowired
 	public ShopController(OrderableProductDao orderableProductDao, ShopProductConverter shopProductConverter, IOrderService orderService){
@@ -39,6 +40,7 @@ public class ShopController {
 		Collection<Product> products = orderableProductDao.all();
 		Collection<ShopProduct> shopProducts = products.stream().map(shopProductConverter::convert).collect(Collectors.toList());
 		model.addAttribute("products", shopProducts);
+		model.addAttribute("username", SecurityContextService.getUser().getName());
 		return "shop";
 	}
 	

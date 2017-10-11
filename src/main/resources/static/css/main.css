@@ -4,10 +4,14 @@
     margin-bottom: 10px;
 }
 .logo{
-    background: white;
     padding-bottom: 5px;
     margin-bottom: 15px;
-    box-shadow: 0px 5px 10px black;
+    --box-shadow: 0px 5px 10px black;
+    background-repeat-y: no-repeat;
+    background: url("/img/tinder.png");
+    height: 70px;
+    color: white;
+
 }
 
 body{
