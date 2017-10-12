@@ -17,3 +17,17 @@
 body{
     background: url("/img/wall.jpg")
 }
+
+.edgy *, .edgy{
+	border-radius: 0px;
+}
+
+.edgy{
+	
+	margin-left: -5px; 
+	margin-right: -5px
+}
+
+.fullwidth{
+	width: 100%;
+}
