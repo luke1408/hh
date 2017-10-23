@@ -13,6 +13,8 @@ import org.springframework.jdbc.datasource.init.ScriptStatementFailedException;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Component;
 
+import at.fwuick.harryshofladen.dao.OrderDao;
+import at.fwuick.harryshofladen.dao.model.Order;
 import lombok.extern.log4j.Log4j;
 
 @Component
@@ -21,11 +23,33 @@ public class DaheimDatabaseInitializer {
 
   private static final String SQLFILE = "/db-init.sql";
 
-@Autowired
+  @Autowired
   JdbcTemplate jdbcTemplate;
+  
+  @Autowired
+  OrderDao orderDao;
   
 
 	public void run(){
+		runInitScript(); 
+		Order order = new Order(){{
+			setActive(true);
+			setAmount(22);
+			setProduct(1);
+			setUser(1);
+		}};
+		orderDao.insert(order);
+		order = new Order(){{
+			setActive(false);
+			setAmount(3);
+			setProduct(2);
+			setUser(1);
+		}};
+		orderDao.insert(order);
+	}
+
+
+	private void runInitScript() {
 		try (Connection con = jdbcTemplate.getDataSource().getConnection();
 				InputStream is = getClass().getResourceAsStream(SQLFILE)) {
 
@@ -38,7 +62,7 @@ public class DaheimDatabaseInitializer {
 			throw new RuntimeException("Database Init failed", e);
 		} catch (IOException | SQLException e) {
 			throw new RuntimeException("Database Init failed", e);
-		} 
+		}
 	}
 
 

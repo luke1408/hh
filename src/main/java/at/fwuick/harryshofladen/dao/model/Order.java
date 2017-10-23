@@ -7,4 +7,5 @@ public class Order extends AbstractIdentifiedEntity{
 	private long user;
 	private long product;
 	private int amount;
+	private boolean active;
 }

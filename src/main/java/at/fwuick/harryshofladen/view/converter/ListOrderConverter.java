@@ -12,7 +12,7 @@ import at.fwuick.harryshofladen.dao.model.Product;
 import at.fwuick.harryshofladen.view.converter.interfaces.IDaoViewConverter;
 
 @Component
-public class ListOrderConverter implements IDaoViewConverter<Order, at.fwuick.harryshofladen.view.model.Order>{
+public class ListOrderConverter implements IDaoViewConverter<Order, at.fwuick.harryshofladen.view.model.ViewOrder>{
 
 	@Autowired
 	ProductDao productDao;
@@ -22,8 +22,8 @@ public class ListOrderConverter implements IDaoViewConverter<Order, at.fwuick.ha
 	
 	
 	@Override
-	public at.fwuick.harryshofladen.view.model.Order convert(Order daoOrder) {
-		at.fwuick.harryshofladen.view.model.Order viewOrder = new at.fwuick.harryshofladen.view.model.Order();
+	public at.fwuick.harryshofladen.view.model.ViewOrder convert(Order daoOrder) {
+		at.fwuick.harryshofladen.view.model.ViewOrder viewOrder = new at.fwuick.harryshofladen.view.model.ViewOrder();
 		viewOrder.setId((long) daoOrder.getId());
 		viewOrder.setAmount(daoOrder.getAmount());
 		viewOrder.setProductid(daoOrder.getProduct());

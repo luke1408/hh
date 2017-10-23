@@ -1,6 +1,7 @@
 package at.fwuick.harryshofladen.controller;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fwuick.harryshofladen.SecurityContextService;
+import at.fwuick.harryshofladen.dao.OrderDao;
 import at.fwuick.harryshofladen.dao.OrderableProductDao;
+import at.fwuick.harryshofladen.dao.model.Order;
 import at.fwuick.harryshofladen.dao.model.Product;
 import at.fwuick.harryshofladen.dao.model.User;
 import at.fwuick.harryshofladen.exceptions.HofladenException;
 import at.fwuick.harryshofladen.service.interfaces.IOrderService;
+import at.fwuick.harryshofladen.view.converter.ListOrderConverter;
 import at.fwuick.harryshofladen.view.converter.ShopProductConverter;
+import at.fwuick.harryshofladen.view.model.ViewOrder;
 import at.fwuick.harryshofladen.view.model.ShopProduct;
 
 @Controller
@@ -26,13 +31,21 @@ public class ShopController {
 	OrderableProductDao orderableProductDao;
 	ShopProductConverter shopProductConverter;
 	IOrderService orderService;
+	OrderDao orderDao;
+	ListOrderConverter orderConverter;
+	
+	
 
 	
 	@Autowired
-	public ShopController(OrderableProductDao orderableProductDao, ShopProductConverter shopProductConverter, IOrderService orderService){
+	public ShopController(OrderableProductDao orderableProductDao, ShopProductConverter shopProductConverter,
+			IOrderService orderService, OrderDao orderDao, ListOrderConverter orderConverter) {
+		super();
 		this.orderableProductDao = orderableProductDao;
 		this.shopProductConverter = shopProductConverter;
 		this.orderService = orderService;
+		this.orderDao = orderDao;
+		this.orderConverter = orderConverter;
 	}
 	
 	@RequestMapping("/shop")
@@ -53,5 +66,18 @@ public class ShopController {
 			e.printStackTrace();
 		}
 		return "redirect:/shop";
+	}
+	
+	@RequestMapping(value="/orders", method = RequestMethod.GET)
+	public String orders(Model model){
+		User user = SecurityContextService.getUser();
+		List<Order> allUserOrders = orderDao.selectByUser(user.getId());
+		
+		List<ViewOrder> activeOrders = allUserOrders.stream().filter(o -> o.isActive()).map(orderConverter::convert).collect(Collectors.toList());
+		List<ViewOrder> inactiveOrders = allUserOrders.stream().filter(o -> !o.isActive()).map(orderConverter::convert).collect(Collectors.toList());
+		
+		model.addAttribute("activeOrders", activeOrders);
+		model.addAttribute("inactiveOrders", inactiveOrders);
+		return "orders";
 	}
 }

@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-public class Order {
+public class ViewOrder {
 	private String username;
 	private Long userid;
 	private String productname;
