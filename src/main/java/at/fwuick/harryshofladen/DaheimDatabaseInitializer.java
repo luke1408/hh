@@ -33,19 +33,18 @@ public class DaheimDatabaseInitializer {
 	public void run(){
 		runInitScript(); 
 		Order order = new Order(){{
-			setActive(true);
 			setAmount(22);
 			setProduct(1);
 			setUser(1);
 		}};
 		orderDao.insert(order);
 		order = new Order(){{
-			setActive(false);
 			setAmount(3);
 			setProduct(2);
 			setUser(1);
 		}};
 		orderDao.insert(order);
+		orderDao.setActive(order.getId(), false);
 	}
 
 

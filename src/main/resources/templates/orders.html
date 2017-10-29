@@ -26,12 +26,13 @@
 	</div>
 	<div class="container">
 		<div>
+			<div class="row">
+				<h2>Am Laufen</h2>
+			</div>
 			<th:block th:each="order : ${activeOrders}">
 				<div class="row">
-					<div class="shoptile">
+					<div class="col shoptile">
 						<dl class="row">
-							<dt class="col-4">Benutzer</dt>
-							<dd class="col-8" th:text="${order.username}"></dd>
 							<dt class="col-4">Product</dt>
 							<dd class="col-8" th:text="${order.productname}"></dd>
 							<dt class="col-4">Amount</dt>
@@ -42,12 +43,13 @@
 					</div>
 				</div>
 			</th:block>
+			<div class="row">
+				<h2>Abgeschlossen</h2>
+			</div>
 			<th:block th:each="order : ${inactiveOrders}">
-				<div class="col-sm-6 col-md-4 col-lg-3 ">
-					<div class="shoptile">
+				<div class="row">
+					<div class="col shoptile inactive">
 						<dl class="row">
-							<dt class="col-4">Benutzer</dt>
-							<dd class="col-8" th:text="${order.username}"></dd>
 							<dt class="col-4">Product</dt>
 							<dd class="col-8" th:text="${order.productname}"></dd>
 							<dt class="col-4">Amount</dt>
