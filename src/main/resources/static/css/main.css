@@ -45,3 +45,7 @@ h2{
 	color: black;
 	text-shadow: white 2px 2px 5px;
 }
+
+.btn{
+	border-radius: 0px;
+}
