@@ -43,5 +43,23 @@ public abstract class AbstractDao<T> implements IDao, IAllDao<T>, IGetDao<T>{
 		return jdbcTemplate.queryForObject(query, params(id), this.rowMapper());
 	}
 	
+	@Override
+	public boolean exists(long id) {
+		String query = "select count(1) from %table where id = ?";
+		query =  resolveTableName(query);
+		int count = jdbcTemplate.queryForObject(query, new Object[]{id}, Integer.class);
+		if(count > 0){
+			if (count == 1){
+				return true;
+			}else{
+				throw new RuntimeException(this.tableName() + " allows duplicated ids and does not qualify for an AbstractDao implementation");
+			}
+		}else{
+			return false;
+		}
+	}
+	
+	
+	
 	
 }

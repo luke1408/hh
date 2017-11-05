@@ -1,4 +1,4 @@
-package at.fwuick.harryshofladen.controller;
+package at.fwuick.harryshofladen.controller.admin;
 
 import java.util.List;
 

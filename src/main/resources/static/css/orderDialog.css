@@ -1,0 +1,13 @@
+.orderDialog .image > img{
+	width: 100%;
+}
+
+.orderDialog .right{
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+.orderDialog{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
