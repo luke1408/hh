@@ -14,16 +14,21 @@
 	<div th:fragment="orderDialog">
 		<div class="container orderDialog">
 			<div class="row">
-				<div class="col-4 image">
+				<div class="col-6 image">
 					<img th:src="${product.image}"></img>
 				</div>
-				<div class="col-8 right">
-					<h3 th:text="${product.name}"></h3>
+				<div class="col-6 right">
+					<h4 th:text="${product.name}"></h4>
 					<div th:text="${product.description}" class="description"></div>
 					<span style="font-size: 0.8rem;"> <span
 									th:text="${product.amount}"></span> <span
 									th:text="${product.unit}"></span> <span> übrig</span>
 								</span>
+					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
 					<form action="/shop/order" method="post" class="edgy">
 								<div class="input-group number-spinner">
 									<span class="input-group-btn data-dwn">
@@ -31,7 +36,7 @@
 											<i class="fa fa-minus" aria-hidden="true"></i>
 										</button>
 									</span> <input type="text" class="form-control text-center" name="amount" value="1"
-										min="1" max="40" pattern="\d{1,3}"/> <span class="input-group-btn data-up">
+										min="1" th:max="${product.maxOrder}" pattern="\d{1,3}"/> <span class="input-group-btn data-up">
 										<button class="btn btn-default btn-info" data-dir="up" type="button">
 											<i class="fa fa-plus" aria-hidden="true"></i>
 										</button>

@@ -23,8 +23,10 @@ public class ShopProductConverter implements IDaoViewConverter<Product, ShopProd
 		productDao.persist(product);
 		String image = productImageService.getImageFile(product.getId());
 		String orderDialogUrl = "/orderDialog?product="+product.getId();
+		int maxOrderCap = 40;
+		int maxOrder = product.getAmount()>maxOrderCap?maxOrderCap:product.getAmount();
 
-		return new ShopProduct(product, image, orderDialogUrl);
+		return new ShopProduct(product, image, orderDialogUrl, maxOrder);
 	}
 
 }

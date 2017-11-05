@@ -11,11 +11,13 @@ public class ShopProduct {
 	private Product product;
 	private @Getter String image;
 	private @Getter String orderUrl;
+	private @Getter int maxOrder;
 	
-	public ShopProduct(Product product, String image, String orderUrl){
+	public ShopProduct(Product product, String image, String orderUrl, int maxOrder){
 		this.product = product;
 		this.image = image;
 		this.orderUrl = orderUrl;
+		this.maxOrder = maxOrder;
 	}
 
 	public int getId() {
