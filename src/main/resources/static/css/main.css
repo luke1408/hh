@@ -2,6 +2,12 @@
     box-shadow: 5px 5px 10px black;
     background: white;
     margin-bottom: 10px;
+    color: black;
+    
+}
+
+.shoptile{
+    text-decoration: none;
 }
 .logo{
     padding-bottom: 5px;
@@ -48,4 +54,12 @@ h2{
 
 .btn{
 	border-radius: 0px;
+}
+
+.link{
+	cursor: pointer;
+}
+
+.shoptile:hover{
+	margin-top: -5px;
 }

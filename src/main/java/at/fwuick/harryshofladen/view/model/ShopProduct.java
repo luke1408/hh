@@ -10,10 +10,12 @@ public class ShopProduct {
 	
 	private Product product;
 	private @Getter String image;
+	private @Getter String orderUrl;
 	
-	public ShopProduct(Product product, String image){
+	public ShopProduct(Product product, String image, String orderUrl){
 		this.product = product;
 		this.image = image;
+		this.orderUrl = orderUrl;
 	}
 
 	public int getId() {

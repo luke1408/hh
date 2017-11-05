@@ -22,7 +22,9 @@ public class ShopProductConverter implements IDaoViewConverter<Product, ShopProd
 	public ShopProduct convert(Product product) {
 		productDao.persist(product);
 		String image = productImageService.getImageFile(product.getId());
-		return new ShopProduct(product, image);
+		String orderDialogUrl = "/orderDialog?product="+product.getId();
+
+		return new ShopProduct(product, image, orderDialogUrl);
 	}
 
 }
