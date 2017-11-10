@@ -15,9 +15,10 @@
 		$('.link').click(function(){
 			//window.location = $(this).attr("href");
 
-			$('#orderModal .modal-body').load($(this).attr("href") + " .orderDialog");
-			$('#orderModal').modal('toggle');
-			$.getScript('/js/number-spinner.js');
+			$('#orderModal .modal-body').load($(this).attr("href") + " .orderDialog", function(){
+				$('#orderModal').modal('toggle');
+				$.getScript('/js/number-spinner.js');
+			});
 		});
 	});
 </script>
