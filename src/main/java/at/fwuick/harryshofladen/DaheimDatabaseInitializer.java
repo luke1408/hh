@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,7 +15,9 @@ import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Component;
 
 import at.fwuick.harryshofladen.dao.OrderDao;
+import at.fwuick.harryshofladen.dao.ProductDao;
 import at.fwuick.harryshofladen.dao.model.Order;
+import at.fwuick.harryshofladen.dao.model.Product;
 import lombok.extern.log4j.Log4j;
 
 @Component
@@ -28,6 +31,9 @@ public class DaheimDatabaseInitializer {
   
   @Autowired
   OrderDao orderDao;
+  
+  @Autowired
+  ProductDao productDao;
   
 
 	public void run(){
@@ -45,6 +51,15 @@ public class DaheimDatabaseInitializer {
 		}};
 		orderDao.insert(order);
 		orderDao.setActive(order.getId(), false);
+		
+		for(Product product : productDao.all()){
+			try(InputStream stream = this.getClass().getResourceAsStream("/static/img/product/test1.png")) {
+					productDao.insertImage(product.getId(), stream);
+				
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+		}
 	}
 
 
