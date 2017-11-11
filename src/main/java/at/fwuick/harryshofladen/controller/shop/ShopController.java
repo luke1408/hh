@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +21,7 @@ import at.fwuick.harryshofladen.dao.model.Order;
 import at.fwuick.harryshofladen.dao.model.Product;
 import at.fwuick.harryshofladen.dao.model.User;
 import at.fwuick.harryshofladen.exceptions.HofladenException;
+import at.fwuick.harryshofladen.service.ShopService;
 import at.fwuick.harryshofladen.service.interfaces.IOrderService;
 import at.fwuick.harryshofladen.view.converter.ListOrderConverter;
 import at.fwuick.harryshofladen.view.converter.ShopProductConverter;
@@ -30,36 +32,39 @@ import at.fwuick.harryshofladen.view.model.ShopProduct;
 public class ShopController {
 	
 	OrderableProductDao orderableProductDao;
-	ShopProductConverter shopProductConverter;
 	IOrderService orderService;
 	OrderDao orderDao;
 	ListOrderConverter orderConverter;
+	ShopService shopService;
 	
-	
-
 	
 	
 	@Autowired
-	public ShopController(OrderableProductDao orderableProductDao, ShopProductConverter shopProductConverter,
-			IOrderService orderService, OrderDao orderDao, ListOrderConverter orderConverter) {
+	public ShopController(OrderableProductDao orderableProductDao, IOrderService orderService, OrderDao orderDao,
+			ListOrderConverter orderConverter, ShopService shopService) {
 		super();
 		this.orderableProductDao = orderableProductDao;
-		this.shopProductConverter = shopProductConverter;
 		this.orderService = orderService;
 		this.orderDao = orderDao;
 		this.orderConverter = orderConverter;
+		this.shopService = shopService;
 	}
-	
+
 	@ModelAttribute("username")
 	public String getUsername(){
 		return SecurityContextService.getUser().getName();
 	}
 	
 	@RequestMapping("/shop")
-	public String shop(Model model){
-		Collection<Product> products = orderableProductDao.all();
-		Collection<ShopProduct> shopProducts = products.stream().map(shopProductConverter::convert).collect(Collectors.toList());
-		model.addAttribute("products", shopProducts);
+	public String shop(Model model, @RequestParam(value = "query", required = false) String searchQuery){
+		Collection<ShopProduct> products;
+		if(searchQuery == null){
+			products = shopService.all();
+		}else{
+			model.addAttribute("searchString", searchQuery);
+			products = shopService.searchProduct(searchQuery);
+		}
+		model.addAttribute("products", products);
 		return "shop";
 	}
 	

@@ -27,6 +27,18 @@
 <body>
 	<div th:include="fragments/navbar :: navbar"></div>
 	<div class="container">
+		<form method="get" action="/shop">
+			<div class="row marginbottom">
+				<div class="col-12">
+    				<div class="input-group">
+	      				<input type="text" class="form-control" name="query" th:value="${searchString}"/>
+	      				<span class="input-group-btn">
+	        				<button class="btn btn-secondary" type="button">Suchen</button>
+	      				</span>
+      				</div>
+    			</div>
+  			</div>
+		</form>
 		<div class="row">
 			<th:block th:each="product : ${products}">
 				<div class="col-sm-6 col-md-4 col-lg-3 ">
