@@ -1,13 +1,26 @@
 package at.fwuick.harryshofladen.dao;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Blob;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.support.SqlLobValue;
+import org.springframework.jdbc.support.lob.DefaultLobHandler;
+import org.springframework.jdbc.support.lob.LobHandler;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -61,5 +74,26 @@ public class ProductDao extends AbstractPopulatedDao<Product>{
 		return jdbcTemplate.query(sql, rowMapper());
 		
 	}
+	
+	public Blob getImage(long productId){
+		String sql = query("select image from product where id = ?");
+		return jdbcTemplate.queryForObject(sql, Blob.class, new Object[]{productId});
+	}
+	
+	public String getImageBase64(long productId){
+		Blob blob = getImage(productId);
+		if(blob == null)
+			return null;
+		try {
+			return new String(Base64.encode(org.apache.commons.io.IOUtils.toByteArray(blob.getBinaryStream())));
+		} catch (SQLException | IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void insertImage(long productId, InputStream image){
+		jdbcTemplate.update("update product set image = ? where id = ?", new Object[]{image, productId});
+	}
+	
 
 }

@@ -43,7 +43,7 @@
 			<th:block th:each="product : ${products}">
 				<div class="col-sm-6 col-md-4 col-lg-3 ">
 						<div class="shoptile link" th:href="${product.orderUrl}">
-							<img th:src="${product.image}" style="width: 100%" />
+							<img th:src="${'data:image/png;base64,' + product.image}" style="width: 100%" />
 							<div style="margin: 5px">
 								<h4 style="height: 3rem" th:text="${product.name}" />
 								<div style="font-size: 0.8rem; height: 1.6rem"

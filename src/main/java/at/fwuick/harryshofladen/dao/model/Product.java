@@ -1,6 +1,7 @@
 package at.fwuick.harryshofladen.dao.model;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 
 import lombok.Data;
 
@@ -12,4 +13,5 @@ public class Product extends AbstractIdentifiedEntity{
 	Unit unitObj;
 	String description;
 	BigDecimal price;
+	Blob image;
 }
