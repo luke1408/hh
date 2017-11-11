@@ -17,7 +17,8 @@ create table product(
 	description varchar(500) not null,
 	price number not null,
 	amount integer not null,
-	unit integer not null
+	unit integer not null,
+	image blob
 );
 
 alter table product 
