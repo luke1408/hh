@@ -1,54 +1,42 @@
 package at.fwuick.harryshofladen.dao;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.h2.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.support.SqlLobValue;
-import org.springframework.jdbc.support.lob.DefaultLobHandler;
-import org.springframework.jdbc.support.lob.LobHandler;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import at.fwuick.harryshofladen.dao.model.Product;
 import at.fwuick.harryshofladen.utils.SQLQueryUtils;
 
 @Repository
-public class ProductDao extends AbstractPopulatedDao<Product>{
-	
-	
+public class ProductDao extends AbstractPopulatedDao<Product> {
+
 	UnitDao unitDao;
-	
+
 	@Autowired
-	public ProductDao(JdbcTemplate jdbcTemplate, UnitDao unitDao){
+	public ProductDao(JdbcTemplate jdbcTemplate, UnitDao unitDao) {
 		super("product", jdbcTemplate, insertParameter);
 		this.unitDao = unitDao;
 	}
-	
-	
-	
-	public Product persist(Product product){
+
+	public Product persist(Product product) {
 		product.setUnitObj(unitDao.get(product.getUnit()));
 		return product;
 	}
 
 	@Override
 	public RowMapper<Product> rowMapper() {
-		return (ResultSet rs, int rowNum)-> {
+		return (ResultSet rs, int rowNum) -> {
 			Product product = new Product();
 			product.setId(rs.getInt("id"));
 			product.setAmount(rs.getInt("amount"));
@@ -59,30 +47,31 @@ public class ProductDao extends AbstractPopulatedDao<Product>{
 			return product;
 		};
 	}
-	
-	
-	static final String[] insertParameter = new String[]{"name", "price", "description", "amount", "unit"};
+
+	static final String[] insertParameter = new String[] { "name", "price", "description", "amount", "unit" };
+
 	@Override
 	protected Object[] mapForInsert(Product e) {
 		return params(e.getName(), e.getPrice(), e.getDescription(), e.getAmount(), e.getUnit());
 	}
-	
-	public List<Product> filterByName(String[] searchTerms){
+
+	public List<Product> filterByName(String[] searchTerms) {
 		String sql = query("select * from %table where");
-		String whereClause = SQLQueryUtils.concatPartsWithAnd(Arrays.stream(searchTerms).map(s -> "upper(name) like '%"+ s.toUpperCase() +"%'").toArray(String[]::new));
+		String whereClause = SQLQueryUtils.concatPartsWithAnd(Arrays.stream(searchTerms)
+				.map(s -> "upper(name) like '%" + s.toUpperCase() + "%'").toArray(String[]::new));
 		sql = SQLQueryUtils.concatParts(sql, whereClause);
 		return jdbcTemplate.query(sql, rowMapper());
-		
+
 	}
-	
-	public Blob getImage(long productId){
+
+	public Blob getImage(long productId) {
 		String sql = query("select image from product where id = ?");
-		return jdbcTemplate.queryForObject(sql, Blob.class, new Object[]{productId});
+		return jdbcTemplate.queryForObject(sql, Blob.class, new Object[] { productId });
 	}
-	
-	public String getImageBase64(long productId){
+
+	public String getImageBase64(long productId) {
 		Blob blob = getImage(productId);
-		if(blob == null)
+		if (blob == null)
 			return null;
 		try {
 			return new String(Base64.encode(org.apache.commons.io.IOUtils.toByteArray(blob.getBinaryStream())));
@@ -90,10 +79,9 @@ public class ProductDao extends AbstractPopulatedDao<Product>{
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public void insertImage(long productId, InputStream image){
-		jdbcTemplate.update("update product set image = ? where id = ?", new Object[]{image, productId});
+
+	public void insertImage(long productId, InputStream image) {
+		jdbcTemplate.update("update product set image = ? where id = ?", new Object[] { image, productId });
 	}
-	
 
 }
