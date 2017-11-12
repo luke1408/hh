@@ -37,7 +37,7 @@ public class UserManagmentController {
 		SecurityContextService.validateAdmin();
 		List<User> users = regularUserDao.all();
 		model.addAttribute("users", users);
-		return "userManagment";
+		return "admin/userManagment";
 	}
 	
 	@RequestMapping(value="update-password", method=RequestMethod.POST)
@@ -54,7 +54,7 @@ public class UserManagmentController {
 	@RequestMapping(value="add-user", method=RequestMethod.GET)
 	public String createUser(){
 		SecurityContextService.validateAdmin();
-		return "createUser";
+		return "admin/createUser";
 	}
 	
 	@RequestMapping(value="add-user", method=RequestMethod.POST)

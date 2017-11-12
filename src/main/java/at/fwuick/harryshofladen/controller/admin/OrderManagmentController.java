@@ -35,7 +35,7 @@ public class OrderManagmentController {
 		SecurityContextService.validateAdmin();
 		List<Order> orders = activeOrderDao.all();
 		model.addAttribute("orders", orders.stream().map(orderConverter::convert).collect(Collectors.toList()));
-		return "orderList";
+		return "admin/orderList";
 	}
 	
 	@RequestMapping(value="/order-managment/close", method = RequestMethod.POST)

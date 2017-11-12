@@ -46,7 +46,7 @@ public class ProductManagmentController {
 		List<Product> products = orderableProductDao.all();
 		model.addAttribute("products", products);
 		
-		return "productList";
+		return "admin/productList";
 	}
 	
 	@RequestMapping(value = "/add-product", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class ProductManagmentController {
 	public String addProduct(Model model){
 		SecurityContextService.validateAdmin();
 		model.addAttribute("units", unitDao.all());
-		return "createProduct";
+		return "admin/createProduct";
 	}
 	
 	
