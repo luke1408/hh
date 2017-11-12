@@ -11,36 +11,22 @@
 <link rel="stylesheet" th:href="@{css/allhref.css}" />
 </head>
 <body>
-	<div class="logo">
-		<div class="container">
-			<div class="row">
-				<div class="col-6">
-					<h1>Harry's Hofladen</h1>
-				</div>
-				<div class="col-6 d-flex flex-row-reverse align-items-center">
-					  		<form action="logout" method="post">
-								<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
-								<button type="submit" class="btn btn-sm">Logout</button>
-							</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div th:include="fragments/adminNavBar :: navbar"></div>
 	<div class="container">
 		<div class="row">
 			<div class="col-6 col-md-4 link" href="/user-managment">
 				<div class="tile link">
-					Benutzer Verwaltung
+					Benutzer
 				</div>
 			</div>
 			<div class="col-6 col-md-4 link" href="/product-managment">
 				<div class="tile link">
-					Produkt Verwaltung
+					Produkte
 				</div>
 			</div>
 			<div class="col-6 col-md-4 link" href="/order-managment">
 				<div class="tile link">
-					Bestellung Verwaltung
+					Bestellungen
 				</div>	
 			</div>
 		
