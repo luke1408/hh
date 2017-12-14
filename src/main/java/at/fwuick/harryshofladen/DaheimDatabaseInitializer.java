@@ -38,28 +38,6 @@ public class DaheimDatabaseInitializer {
 
 	public void run(){
 		runInitScript(); 
-		Order order = new Order(){{
-			setAmount(22);
-			setProduct(1);
-			setUser(1);
-		}};
-		orderDao.insert(order);
-		order = new Order(){{
-			setAmount(3);
-			setProduct(2);
-			setUser(1);
-		}};
-		orderDao.insert(order);
-		orderDao.setActive(order.getId(), false);
-		
-		for(Product product : productDao.all()){
-			try(InputStream stream = this.getClass().getResourceAsStream("/static/img/product/test1.png")) {
-					productDao.insertImage(product.getId(), stream);
-				
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
 	}
 
 
