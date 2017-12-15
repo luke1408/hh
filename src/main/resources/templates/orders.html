@@ -1,13 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Getting Started: Serving Web Content</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/main.css}" />
 <link rel="stylesheet" th:href="@{css/font-awesome.min.css}" />
-<script th:src="@{js/jquery-3.2.1.min.js}"></script>
-<script th:src="@{js/bootstrap.min.js}"></script>
 <script th:src="@{js/number-spinner.js}"></script>
 
 </head>
@@ -15,7 +11,7 @@
 	<div th:include="fragments/navbar :: navbar"></div>
 	<div class="container">
 		<div class="row">
-			<a href="/" type="button" class="btn btn-secondary btn-sm">ZurÃ¼ck</a>
+			<a href="/" type="button" class="btn btn-secondary btn-sm">Zurück</a>
 		</div>
 			<div class="row">
 				<h2>Am Laufen</h2>
@@ -29,7 +25,7 @@
 							<dt class="col-4">Amount</dt>
 							<dd class="col-8"><span th:text="${order.amount}"></span> <span th:text="${order.unit}"></span></dd>
 							<dt class="col-4">Preis</dt>
-							<dd class="col-8"><span th:text="${order.price}"></span><span> â‚¬</span></dd>
+							<dd class="col-8"><span th:text="${order.price}"></span><span> €</span></dd>
 						</dl>
 					</div>
 				</div>
@@ -46,7 +42,7 @@
 							<dt class="col-4">Amount</dt>
 							<dd class="col-8"><span th:text="${order.amount}"></span> <span th:text="${order.unit}"></span></dd>
 							<dt class="col-4">Preis</dt>
-							<dd class="col-8"><span th:text="${order.price}"></span><span> â‚¬</span></dd>
+							<dd class="col-8"><span th:text="${order.price}"></span><span> €</span></dd>
 						</dl>
 					</div>
 				</div>

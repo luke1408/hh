@@ -1,17 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Getting Started: Serving Web Content</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/admin.css}" />
-<script th:src="@{js/bootstrap.min.js}"></script>
 </head>
 <body>
 	<div th:include="fragments/adminNavBar :: navbar"></div>
 	<div class="container">
 		<div class="d-flex justify-content-between buttonRow">
-			<a href="/product-managment" class="btn btn-secondary" role="button">ZurÃ¼ck</a>
+			<a href="/product-managment" class="btn btn-secondary" role="button">Zurück</a>
 		</div>
 		<h2>Produkt erstellen</h2>
 		<form class="row" action="add-product" method="post" enctype="multipart/form-data">
@@ -45,7 +42,7 @@
 				<input type="file" name="img" id="img"></input>
 			</div>
 			<div class="col-12">
-				<button type="submit" class="btn btn-primary">HinzufÃ¼gen</button>
+				<button type="submit" class="btn btn-primary">Hinzufügen</button>
 			</div>
 		</form>
 	</div>

@@ -1,17 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Getting Started: Serving Web Content</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/admin.css}" />
-<script th:src="@{js/bootstrap.min.js}"></script>
 </head>
 <body>
 	<div th:include="fragments/adminNavBar :: navbar"></div>
 	<div class="container">
 		<div class="d-flex justify-content-between buttonRow">
-			<a href="/user-managment" class="btn btn-secondary" role="button">ZurÃ¼ck</a>
+			<a href="/user-managment" class="btn btn-secondary" role="button">Zurück</a>
 		</div>
 		<h2>Benutzer Erstellen</h2>
 		<form class="row" action="add-user" method="post">
@@ -29,7 +26,7 @@
 				<input id="name" name="password" type="text" class="form-control" required="required"></input>
 			</div>
 			<div class="col-12">
-				<button type="submit" class="btn btn-primary">HinzufÃ¼gen</button>
+				<button type="submit" class="btn btn-primary">Hinzufügen</button>
 			</div>
 		</form>
 	</div>

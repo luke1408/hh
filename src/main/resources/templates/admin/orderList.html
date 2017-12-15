@@ -1,18 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Getting Started: Serving Web Content</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/admin.css}" />
-<script th:src="@{js/bootstrap.min.js}"></script>
-<script th:src="@{js/jquery-3.2.1.min.js}"></script>
 </head>
 <body>
 	<div th:include="fragments/adminNavBar :: navbar"></div>
 	<div class="container">
 		<div class="d-flex justify-content-between buttonRow">
-			<a href="/" class="btn btn-secondary" role="button">ZurÃ¼ck</a>
+			<a href="/" class="btn btn-secondary" role="button">Zurück</a>
 		</div>
 		<div class="row">
 			<th:block th:each="order : ${orders}">
@@ -31,7 +27,7 @@
 						<form action="/order-managment/close" method="post">
 							<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
 							<input type="hidden"  th:name="order"   th:value="${order.id}"/>
-							<button type="submit" class="btn btn-primary fullwidth">Bestellung schlieÃŸen</button>
+							<button type="submit" class="btn btn-primary fullwidth">Bestellung schließen</button>
 						</form>
 					</div>
 				</div>
