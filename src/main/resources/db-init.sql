@@ -21,6 +21,12 @@ create table product(
 	image blob
 );
 
+create table register(
+	id integer auto_increment primary key,
+	name varchar(35) not null,
+	email varchar(100) not null
+);
+
 alter table product 
 add foreign key(unit)
 references unit(id);
