@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import at.fwuick.harryshofladen.model.Register;
+import at.fwuick.harryshofladen.dao.model.Register;
 
 @Repository
 public class RegisterDao extends AbstractPopulatedDao<Register>{

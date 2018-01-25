@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import at.fwuick.harryshofladen.model.Register;
+import at.fwuick.harryshofladen.dao.model.Register;
 import at.fwuick.harryshofladen.service.interfaces.IRegisterService;
 
 @Controller

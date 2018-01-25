@@ -1,6 +1,5 @@
-package at.fwuick.harryshofladen.model;
+package at.fwuick.harryshofladen.dao.model;
 
-import at.fwuick.harryshofladen.dao.model.AbstractIdentifiedEntity;
 import lombok.Data;
 
 @Data

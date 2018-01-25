@@ -3,7 +3,7 @@ package at.fwuick.harryshofladen.service;
 import org.springframework.stereotype.Service;
 
 import at.fwuick.harryshofladen.dao.RegisterDao;
-import at.fwuick.harryshofladen.model.Register;
+import at.fwuick.harryshofladen.dao.model.Register;
 import at.fwuick.harryshofladen.service.interfaces.IRegisterService;
 
 @Service
