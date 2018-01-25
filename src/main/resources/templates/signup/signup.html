@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:include="fragments/head :: headerFragment"/>
+<link rel="stylesheet" th:href="@{css/main.css}" />
+<style>
+	label{
+		color: white;
+	}
+</style>
+</head>
+<body style="background: black">
+	<div class="container justify-content-center"
+		style=" padding-top: 150px; padding-bottom: 20px">
+		<div class="alert alert-danger" th:if="${error}">
+		  <strong>Alle Felder müssen befüllt sein!</strong>
+		</div>
+		<h1 style="padding-bottom: 50px">Registrieren</h1>
+		<form action="signup" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+				<input type="text" class="form-control" name="name"></input> 
+			</div>
+			<div class="form-group">
+				<label for="email">Email:</label>
+				<input type="text" class="form-control" name="email"></input> 
+			</div>
+			<input type="hidden"  th:name="${_csrf.parameterName}"   th:value="${_csrf.token}"/>
+			<button type="submit" class="btn">Anmelden</button>
+		</form>
+	</div>
+</body>
+</html>

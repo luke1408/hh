@@ -22,7 +22,7 @@ public class SignupController {
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String singup(Model model){
-		return "signup";
+		return "signup/signup";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
@@ -31,7 +31,7 @@ public class SignupController {
 		register.setEmail(email);
 		register.setName(name);
 		registerService.add(register);
-		return "signupConfirmed";
+		return "signup/signupConfirmed";
 	}
 	
 	
