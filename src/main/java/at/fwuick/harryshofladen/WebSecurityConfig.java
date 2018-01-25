@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	http
         .authenticationProvider(authentificationProvider)
             .authorizeRequests()
-                .anyRequest().authenticated().and()
+            	.antMatchers("/signup").permitAll().anyRequest().authenticated().and()
             .formLogin()
                 .loginPage("/login").passwordParameter("password").usernameParameter("username")
                 .failureUrl("/login?error=true")
