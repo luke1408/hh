@@ -1,5 +1,7 @@
 package at.fwuick.harryshofladen.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import at.fwuick.harryshofladen.dao.RegisterDao;
@@ -19,6 +21,11 @@ public class RegisterService implements IRegisterService {
 	@Override
 	public void add(Register register) {
 		registerDao.insert(register);
+	}
+
+	@Override
+	public List<Register> all() {
+		return registerDao.all();
 	}
 	
 }

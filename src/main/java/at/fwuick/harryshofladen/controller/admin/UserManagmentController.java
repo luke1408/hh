@@ -18,18 +18,22 @@ import at.fwuick.harryshofladen.SecurityContextService;
 import at.fwuick.harryshofladen.controller.model.AddUser;
 import at.fwuick.harryshofladen.dao.RegularUserDao;
 import at.fwuick.harryshofladen.dao.UserDao;
+import at.fwuick.harryshofladen.dao.model.Register;
 import at.fwuick.harryshofladen.dao.model.User;
+import at.fwuick.harryshofladen.service.interfaces.IRegisterService;
 
 @Controller
 public class UserManagmentController {
 
 	RegularUserDao regularUserDao;
 	UserDao userDao;
+	private IRegisterService registerService;
 	
 	@Autowired
-	public UserManagmentController(RegularUserDao regularUserDao, UserDao userDao){
+	public UserManagmentController(RegularUserDao regularUserDao, UserDao userDao, IRegisterService registerService){
 		this.regularUserDao = regularUserDao;
 		this.userDao = userDao;
+		this.registerService = registerService;
 	}
 	
 	@RequestMapping("/user-managment")
@@ -37,6 +41,8 @@ public class UserManagmentController {
 		SecurityContextService.validateAdmin();
 		List<User> users = regularUserDao.all();
 		model.addAttribute("users", users);
+		List<Register> registers = registerService.all();
+		model.addAttribute("registers", registers);
 		return "admin/userManagment";
 	}
 	
@@ -47,7 +53,7 @@ public class UserManagmentController {
 		SecurityContextService.validateAdmin();
 		User user = regularUserDao.get(userId);
 		user.setPassword(password);
-		userDao.updatePassword(user);
+		userDao.updatePassword(user);		
 		return "redirect:/user-managment";
 	}
 	
