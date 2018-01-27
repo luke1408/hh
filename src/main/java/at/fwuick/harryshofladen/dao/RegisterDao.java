@@ -1,6 +1,5 @@
 package at.fwuick.harryshofladen.dao;
 
-import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,5 +39,4 @@ public class RegisterDao extends AbstractPopulatedDao<Register>{
 	protected Object[] mapForInsert(Register e) {
 		return new Object[]{e.getName(), e.getEmail()};
 	}
-
 }

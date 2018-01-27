@@ -21,10 +21,16 @@ public abstract class AbstractPopulatedDao<T extends AbstractIdentifiedEntity> e
 	@Override
 	public T insert(T e) {
 		String sql = query("insert into %table (%s) values( %s)");
-		sql = sql.format(sql, parameterString(), jdbcQuestionMarkString());
+		sql = String.format(sql, parameterString(), jdbcQuestionMarkString());
 		jdbcTemplate.update(sql, mapForInsert(e));
 		e.setId(this.lastId());
 		return e;
+	}
+	
+	
+	public void delete(long id){
+		String sql = query("delete from %table where id = ?");
+		jdbcTemplate.update(sql, id);
 	}
 
 	protected abstract Object[] mapForInsert(T e);

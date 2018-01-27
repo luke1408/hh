@@ -27,5 +27,16 @@ public class RegisterService implements IRegisterService {
 	public List<Register> all() {
 		return registerDao.all();
 	}
+
+	@Override
+	public Register get(long id) {
+		return registerDao.get(id);
+	}
+
+	@Override
+	public void delete(long id) {
+		registerDao.delete(id);
+		
+	}
 	
 }

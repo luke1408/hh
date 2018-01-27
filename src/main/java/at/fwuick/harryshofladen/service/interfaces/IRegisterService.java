@@ -8,4 +8,8 @@ public interface IRegisterService {
 	public void add(Register register);
 
 	public List<Register> all();
+
+	public Register get(long id);
+
+	public void delete(long id);
 }

@@ -1,5 +1,7 @@
 package at.fwuick.harryshofladen.controller.admin;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -63,10 +65,33 @@ public class UserManagmentController {
 		return "admin/createUser";
 	}
 	
+	@RequestMapping(value="confirm-register", method=RequestMethod.POST)
+	public String createUser(
+			@RequestParam(value = "password", required = true) String password,
+			@RequestParam(value = "register", required = true) Long register)
+	{
+		SecurityContextService.validateAdmin();
+		Register registerModel = registerService.get(register);
+		AddUser addUser = new AddUser();
+		addUser.setEmail(registerModel.getEmail());
+		addUser.setName(registerModel.getName());
+		addUser.setPassword(password);
+		registerService.delete(registerModel.getId());
+		return createUser(addUser);
+	}
+	
+	
 	@RequestMapping(value="add-user", method=RequestMethod.POST)
 	public String createUser(@ModelAttribute("user") @Valid AddUser user){
 		SecurityContextService.validateAdmin();
 		regularUserDao.insert(user);
+		return "redirect:/user-managment";
+	}
+	
+	@RequestMapping(value = "delete-register", method=RequestMethod.POST)
+	public String deleteRegister(@RequestParam(value = "register", required = true) Long register){
+		SecurityContextService.validateAdmin();
+		registerService.delete(register);
 		return "redirect:/user-managment";
 	}
 }
