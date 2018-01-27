@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8"/>
 <th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/admin.css}" />
 </head>
@@ -8,8 +9,8 @@
 	<div th:include="fragments/adminNavBar :: navbar"></div>
 	<div class="container">
 		<div class="d-flex justify-content-between buttonRow">
-			<a href="/" class="btn btn-secondary" role="button">Zurück</a>
-			<a href="/add-product" class="btn btn-primary" role="button">Produkt hinzufügen</a>
+			<a href="/" class="btn btn-secondary" role="button">ZurÃ¼ck</a>
+			<a href="/add-product" class="btn btn-primary" role="button">Produkt hinzufÃ¼gen</a>
 		</div>
 		<div class="row">
 			<th:block th:each="product : ${products}">

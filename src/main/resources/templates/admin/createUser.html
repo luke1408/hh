@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8"/>
 <th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/admin.css}" />
 </head>
@@ -8,7 +9,7 @@
 	<div th:include="fragments/adminNavBar :: navbar"></div>
 	<div class="container">
 		<div class="d-flex justify-content-between buttonRow">
-			<a href="/user-managment" class="btn btn-secondary" role="button">Zurück</a>
+			<a href="/user-managment" class="btn btn-secondary" role="button">ZurÃ¼ck</a>
 		</div>
 		<h2>Benutzer Erstellen</h2>
 		<form class="row" action="add-user" method="post">
@@ -26,7 +27,7 @@
 				<input id="name" name="password" type="text" class="form-control" required="required"></input>
 			</div>
 			<div class="col-12">
-				<button type="submit" class="btn btn-primary">Hinzufügen</button>
+				<button type="submit" class="btn btn-primary">HinzufÃ¼gen</button>
 			</div>
 		</form>
 	</div>

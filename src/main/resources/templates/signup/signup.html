@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8"/>
 <th:block th:include="fragments/head :: headerFragment"/>
 <link rel="stylesheet" th:href="@{css/main.css}" />
 <style>
@@ -13,7 +14,7 @@
 	<div class="container justify-content-center"
 		style=" padding-top: 150px; padding-bottom: 20px">
 		<div class="alert alert-danger" th:if="${error}">
-		  <strong>Alle Felder müssen befüllt sein!</strong>
+		  <strong>Alle Felder mÃ¼ssen befÃ¼llt sein!</strong>
 		</div>
 		<h1 style="padding-bottom: 50px">Registrieren</h1>
 		<form action="signup" method="post">
