@@ -5,10 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,13 +16,11 @@ import at.fwuick.harryshofladen.SecurityContextService;
 import at.fwuick.harryshofladen.dao.OrderDao;
 import at.fwuick.harryshofladen.dao.OrderableProductDao;
 import at.fwuick.harryshofladen.dao.model.Order;
-import at.fwuick.harryshofladen.dao.model.Product;
 import at.fwuick.harryshofladen.dao.model.User;
 import at.fwuick.harryshofladen.exceptions.HofladenException;
 import at.fwuick.harryshofladen.service.ShopService;
 import at.fwuick.harryshofladen.service.interfaces.IOrderService;
 import at.fwuick.harryshofladen.view.converter.ListOrderConverter;
-import at.fwuick.harryshofladen.view.converter.ShopProductConverter;
 import at.fwuick.harryshofladen.view.model.ViewOrder;
 import at.fwuick.harryshofladen.view.model.ShopProduct;
 

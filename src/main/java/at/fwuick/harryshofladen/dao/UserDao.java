@@ -17,7 +17,7 @@ public class UserDao extends AbstractPopulatedDao<User>{
 	
 	@Autowired
 	protected UserDao(JdbcTemplate jdbcTemplate) {
-		super("user", jdbcTemplate, insertParameter);
+		super("\"user\"", jdbcTemplate, insertParameter);
 	}
 	
 	public User findByPassword(String password){

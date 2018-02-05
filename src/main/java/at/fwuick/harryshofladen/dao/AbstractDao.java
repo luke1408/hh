@@ -3,7 +3,6 @@ package at.fwuick.harryshofladen.dao;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import at.fwuick.harryshofladen.dao.interfaces.IAllDao;
 import at.fwuick.harryshofladen.dao.interfaces.IDao;
@@ -12,6 +11,7 @@ import lombok.Setter;
 
 public abstract class AbstractDao<T> implements IDao, IAllDao<T>, IGetDao<T>{
 
+	private static final String ALL_COLUMNS = "*";
 	private @Setter String tableName;
 	protected JdbcTemplate jdbcTemplate;
 	@Override
@@ -25,9 +25,18 @@ public abstract class AbstractDao<T> implements IDao, IAllDao<T>, IGetDao<T>{
 
 	@Override
 	public List<T> all() {
-		String query = "select * from %table";
+		return allSpecificColumns(ALL_COLUMNS);
+	}
+	
+	protected List<T> allSpecificColumns(String columnsString){
+		String query = "select %columns from %table";
+		query = resolveColumns(query, columnsString);
 		query = resolveTableName(query);
 		return jdbcTemplate.query(query, rowMapper());
+	}
+	
+	protected String resolveColumns(String query, String columnsString) {
+		return query.replace("%columns", columnsString);
 	}
 	
 	public int lastId(){
@@ -38,7 +47,12 @@ public abstract class AbstractDao<T> implements IDao, IAllDao<T>, IGetDao<T>{
 	
 	@Override
 	public T get(long id) {
-		String query = "select * from %table where id = ?";
+		return getSpecifiedColumns(id, ALL_COLUMNS);
+	}
+	
+	protected T getSpecifiedColumns(long id, String columnString) {
+		String query = "select %columns from %table where id = ?";
+		query = resolveColumns(query, columnString);
 		query =  resolveTableName(query);
 		return jdbcTemplate.queryForObject(query, params(id), this.rowMapper());
 	}

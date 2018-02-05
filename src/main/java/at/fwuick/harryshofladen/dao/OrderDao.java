@@ -31,7 +31,7 @@ public class OrderDao extends AbstractPopulatedDao<Order>{
 		};
 	}
 	
-	static String[] insertParameter = "product,user,amount".split(",");
+	static String[] insertParameter = "product,\"user\",amount".split(",");
 	@Override
 	protected Object[] mapForInsert(Order e) {
 		return params(e.getProduct(), e.getUser(), e.getAmount());
@@ -43,7 +43,7 @@ public class OrderDao extends AbstractPopulatedDao<Order>{
 	}
 	
 	public List<Order> selectByUser(long user){
-		String sql = resolveTableName("select * from %table where user = ?");
+		String sql = resolveTableName("select * from %table where \"user\" = ?");
 		return jdbcTemplate.query(sql, params(user), rowMapper());
 	}
 	
