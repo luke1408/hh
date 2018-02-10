@@ -20,6 +20,10 @@ public class MyAuthentificationProvider implements AuthenticationProvider{
 	public static final GrantedAuthority ADMIN_AUTHORITY = ()->{
 		return "admin";
 	};
+	
+	public static final GrantedAuthority DEFAULT_AUTHORITY = ()->{
+		return "default";
+	};
 	private ActiveUserDao userDao;
 
 	@Autowired
@@ -34,6 +38,8 @@ public class MyAuthentificationProvider implements AuthenticationProvider{
 			ArrayList<GrantedAuthority> authorities = new ArrayList<>();
 			if(user.getAdmin()){
 				authorities.add(ADMIN_AUTHORITY);
+			}else {
+				authorities.add(DEFAULT_AUTHORITY);
 			}
 			return new UsernamePasswordAuthenticationToken(
 		              user, password, authorities);

@@ -1,6 +1,7 @@
 package at.fwuick.harryshofladen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import at.fwuick.harryshofladen.SecurityContextService;
 import at.fwuick.harryshofladen.dao.UserDao;
 import at.fwuick.harryshofladen.dao.model.User;
 
@@ -23,6 +25,9 @@ public class LoginController {
 	
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(@RequestParam(value="error", required = false) String error, Model model){
+		if( SecurityContextService.isLoggedIn()) {
+			return "redirect:/";
+		}
 		model.addAttribute("error", error);
 		return "login";
 	}
