@@ -6,10 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -91,6 +89,13 @@ public class UserManagmentController {
 	public String deleteRegister(@RequestParam(value = "register", required = true) Long register){
 		SecurityContextService.validateAdmin();
 		registerService.delete(register);
+		return "redirect:/user-managment";
+	}
+	
+	@RequestMapping(value = "delete-user", method=RequestMethod.POST)
+	public String deleteUser(@RequestParam(value = "user", required = true) Long user){
+		SecurityContextService.validateAdmin();
+		userDao.deactivate(user);
 		return "redirect:/user-managment";
 	}
 }

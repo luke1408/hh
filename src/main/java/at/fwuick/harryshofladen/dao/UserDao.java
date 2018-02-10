@@ -3,11 +3,9 @@ package at.fwuick.harryshofladen.dao;
 import java.sql.ResultSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import at.fwuick.harryshofladen.dao.model.User;
 
@@ -20,14 +18,8 @@ public class UserDao extends AbstractPopulatedDao<User>{
 		super("\"user\"", jdbcTemplate, insertParameter);
 	}
 	
-	public User findByPassword(String password){
-		String query = "select * from %table where password = ?";
-		query = resolveTableName(query);
-		try{
-			return jdbcTemplate.queryForObject(query, params(password), rowMapper());
-		}catch(EmptyResultDataAccessException e){
-			return null;
-		}
+	public void deactivate(Long userId) {
+		jdbcTemplate.update("update \"user\" set status = 0 where id = ?", userId);
 	}
 	
 	public boolean passwordExists(String password){

@@ -1,10 +1,15 @@
+
 create table "user"(
 	id serial primary key,
 	name varchar(35) not null,
 	password CHAR(32) not null unique,
 	email varchar(100) not null,
-	admin boolean not null
+	admin boolean not null,
+	status integer not null default 1
 );
+
+create view active_users as
+select * from "user" where status = 1;
 
 create table unit(
 	id serial primary key,
@@ -62,11 +67,11 @@ left join product_ordered_amount poa on p.id = poa.product;
 create view orderable_product as 
 select * from product_active_amount where amount > 0;
 
-create view admin_user as
-select * from "user" where admin = true;
+create or replace view admin_user as
+select * from active_users where admin = true;
 
-create view regular_user as
-select * from "user" where admin = false;
+create or replace view regular_user as
+select * from active_users where admin = false;
 
 insert into "user" (name, password, email, admin) values ('admin', 'admin', 'asd2f@gmx.at', true);
 insert into unit (name) values ('kg');

@@ -10,6 +10,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import at.fwuick.harryshofladen.dao.ActiveUserDao;
 import at.fwuick.harryshofladen.dao.UserDao;
 import at.fwuick.harryshofladen.dao.model.User;
 
@@ -19,10 +20,10 @@ public class MyAuthentificationProvider implements AuthenticationProvider{
 	public static final GrantedAuthority ADMIN_AUTHORITY = ()->{
 		return "admin";
 	};
-	private UserDao userDao;
+	private ActiveUserDao userDao;
 
 	@Autowired
-	public MyAuthentificationProvider(UserDao userDao){
+	public MyAuthentificationProvider(ActiveUserDao userDao){
 		this.userDao = userDao;
 	}
 	@Override
